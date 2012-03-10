@@ -69,17 +69,22 @@ namespace GameEditor.Controls
 
         void ShowImage(GameData.Image image)
         {
-            propertyGrid1.SelectedObject = image;
-            propertyGrid1.Tag = image;
+            try
+            {
+                propertyGrid1.SelectedObject = image;
+                propertyGrid1.Tag = image;
 
-            if (panel1.BackgroundImage == null)
-                return;
+                if (panel1.BackgroundImage == null)
+                    return;
 
-            Bitmap srcBitmap = new Bitmap(panel1.BackgroundImage);
-            Rectangle rect = new Rectangle(image.X, image.Y, image.Width, image.Height);
-
-            panel2.BackgroundImage = srcBitmap.Clone(rect, srcBitmap.PixelFormat);
-            panel2.Size = panel2.BackgroundImage.Size;
+                Bitmap srcBitmap = new Bitmap(panel1.BackgroundImage);
+                Rectangle rect = new Rectangle(image.X, image.Y, image.Width, image.Height);
+                panel2.BackgroundImage = srcBitmap.Clone(rect, srcBitmap.PixelFormat);
+                panel2.Size = panel2.BackgroundImage.Size;
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)

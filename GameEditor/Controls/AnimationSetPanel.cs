@@ -94,7 +94,20 @@ namespace GameEditor.Controls
 
         private void OnAddAnimTrackClicked(object sender, EventArgs e)
         {
+            Animation animation = listView3.Tag as Animation;
+            if (animation == null)
+                return;
 
+            AnimationTrack animTrack = new AnimationTrack();
+            SettingDlg dlg = new SettingDlg("New Animation Track", animTrack);
+            if (dlg.ShowDialog() != DialogResult.OK)
+                return;
+
+            animation.AnimTracks.Add(animTrack);
+
+            ShowAnimation(animation);
+
+            listView3.Items[listView3.Items.Count - 1].Selected = true;
         }
 
         private void OnDeleteAnimTrackClicked(object sender, EventArgs e)
@@ -110,6 +123,40 @@ namespace GameEditor.Controls
             }
 
             ShowAnimation(animation);
+        }
+
+
+        private void OnAddAnimKeyClicked(object sender, EventArgs e)
+        {
+            AnimationTrack animTrack = listView4.Tag as AnimationTrack;
+            if (animTrack == null)
+                return;
+
+            AnimationKey animKey = new AnimationKey();
+            SettingDlg dlg = new SettingDlg("New Animation Key", animKey);
+            if (dlg.ShowDialog() != DialogResult.OK)
+                return;
+
+            animTrack.AnimKeys.Add(animKey);
+
+            ShowAnimationTrack(animTrack);
+
+            listView3.Items[listView3.Items.Count - 1].Selected = true;
+        }
+
+        private void OnDeleteAnimKeyClicked(object sender, EventArgs e)
+        {
+            AnimationTrack animTrack = listView4.Tag as AnimationTrack;
+            if (animTrack == null)
+                return;
+
+            foreach (ListViewItem lvItem in listView4.SelectedItems)
+            {
+                AnimationKey animKey = lvItem.Tag as AnimationKey;
+                animTrack.AnimKeys.Remove(animKey);
+            }
+
+            ShowAnimationTrack(animTrack);
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,6 +178,27 @@ namespace GameEditor.Controls
             if (listView3.SelectedItems.Count < 1)
                 return;
             ShowAnimationTrack(listView3.SelectedItems[0].Tag as AnimationTrack);
+        }
+
+        private void listView4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView4.SelectedItems.Count < 1)
+                return;
+            ShowAnimationKey(listView3.SelectedItems[0].Tag as AnimationKey);
+        }
+
+        private void OnListViewDoubleClicked(object sender, EventArgs e)
+        {
+            ListView listView = sender as ListView;
+            if (listView == null || listView.SelectedItems.Count == 0)
+                return;
+
+            Object select = listView.SelectedItems[0].Tag;
+            if (select == null)
+                return;
+
+            SettingDlg dlg = new SettingDlg("Edit", select);
+            dlg.ShowDialog();
         }
 
         void ShowAnimationSets()
@@ -168,6 +236,18 @@ namespace GameEditor.Controls
         }
 
         void ShowAnimationTrack(AnimationTrack animTrack)
+        {
+            listView4.Items.Clear();
+            listView4.Tag = animTrack;
+
+            foreach (AnimationKey animKey in animTrack.AnimKeys)
+            {
+                ListViewItem lvItem = listView4.Items.Add(animKey.Time.ToString());
+                lvItem.Tag = animKey;
+            }
+        }
+
+        void ShowAnimationKey(AnimationKey animKey)
         {
         }
     }

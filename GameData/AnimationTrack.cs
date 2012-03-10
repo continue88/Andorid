@@ -25,5 +25,12 @@ namespace GameData
         float mEnd = 1.0f;
         [XmlAttribute("End"), DefaultValue(1.0f)]
         public float End { get { return mEnd; } set { mEnd = value; } }
+
+        String mImageName = "";
+        [XmlAttribute("ImageName"), DefaultValue("")]
+        public string ImageName { get { return mImageName; } set { mImageName = value; } }
+
+        List<AnimationKey> mAnimKeys = new List<AnimationKey>();
+        public List<AnimationKey> AnimKeys { get { return mAnimKeys; } }
     }
 }

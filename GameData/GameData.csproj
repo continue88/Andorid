@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="AnimationKey.cs" />
     <Compile Include="AnimationSet.cs" />
     <Compile Include="AnimationSetManager.cs" />
     <Compile Include="AnimationTrack.cs" />
