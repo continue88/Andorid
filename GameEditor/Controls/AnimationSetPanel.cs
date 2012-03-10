@@ -12,9 +12,14 @@ namespace GameEditor.Controls
 {
     public partial class AnimationSetPanel : UserControl
     {
+        AnimationPreviewPanel mPreviewPanel = new AnimationPreviewPanel();
+
         public AnimationSetPanel()
         {
             InitializeComponent();
+
+            mPreviewPanel.Dock = DockStyle.Fill;
+            groupBox5.Controls.Add(mPreviewPanel);
 
             ShowAnimationSets();
         }

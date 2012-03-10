@@ -46,11 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\AnimationPreviewPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AnimationPreviewPanel.Designer.cs">
+      <DependentUpon>AnimationPreviewPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\AnimationSetPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\AnimationSetPanel.Designer.cs">
       <DependentUpon>AnimationSetPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DoubleBuffControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DoubleBuffControl.Designer.cs">
+      <DependentUpon>DoubleBuffControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ImagesetPanel.cs">
       <SubType>UserControl</SubType>
@@ -73,6 +85,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\AnimationPreviewPanel.resx">
+      <DependentUpon>AnimationPreviewPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\AnimationSetPanel.resx">
       <DependentUpon>AnimationSetPanel.cs</DependentUpon>
     </EmbeddedResource>
